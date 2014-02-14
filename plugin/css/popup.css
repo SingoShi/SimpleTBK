@@ -1,0 +1,41 @@
+
+body {
+	color: #47b;
+}
+
+.menu {
+	font-size: 10pt;
+	padding: 5px;
+}
+
+.item {
+    padding: 4px 5px;
+    -webkit-padding-start: 6px;
+    margin: 0px 2px;
+    white-space: nowrap;
+}
+
+.icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    cursor:pointer;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.separator {
+	height: 0px;
+	margin: 3px 2px;
+	border: 0;
+	border-top: 1px solid #ddd;
+}
+
+.about {
+	font-size: 10pt;
+	padding: 10px;
+}
+
+#I_ServerIP {
+    min-width: 120px;
+}
