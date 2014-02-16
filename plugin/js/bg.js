@@ -82,10 +82,12 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                 if (auctionListObj.data.pagelist && 
                     auctionListObj.data.pagelist.length == 1) {
                     var commissionRatePercent = auctionListObj.data.pagelist[0].commissionRatePercent;
+                    var calCommission = auctionListObj.data.pagelist[0].calCommission;
                     if (auctionCodeObj.data && auctionCodeObj.data.clickUrl) {
                         var clickUrl = auctionCodeObj.data.clickUrl;
                         respObj.click_url = clickUrl;
                         respObj.commission_rate = commissionRatePercent * 100;
+                        respObj.cal_commission = calCommission;
                         sendResponse(respObj);
                     } else {
                         genNotify('', 'Auction Code Error', 'Please login alimama, and create your own adzones');

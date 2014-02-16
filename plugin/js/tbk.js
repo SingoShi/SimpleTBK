@@ -37,7 +37,8 @@ Rebate = {
         }
         var c_url = obj.click_url == null ? '#' : obj.click_url;
         var c_rate = obj.commission_rate == null ? '0' :(obj.commission_rate/100).toFixed(2);
-        var html = '<a href="' + c_url + '"> 返利' + c_rate + '%</a>';
+        var c_commission = obj.cal_commission == null ? '0' : obj.cal_commission;
+        var html = '<a href="' + c_url + '"> 返利' + c_rate + '%(' + c_commission +  ')</a>';
         $('#dragbox').html(html);
         $('#dragbox').attr('style','background-color: yellow; padding: 15px; border: 2px solid orange; width: 180px; cursor: move; position: absolute; z-index: 10000000000; top: 250px; left: ' + width + 'px;');
         $("#dragbox").draggable();
