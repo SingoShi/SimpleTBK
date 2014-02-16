@@ -75,7 +75,7 @@ Rebate = {
         return false;
     },
     checkURL: function(url) {
-        var pattern = "^(http|https)://(item|item\\.beta|item\\.lp|ju|detail|chaoshi|spu|a.m)\\.(taobao|tmall)\\.com/";
+        var pattern = "^(http|https)://(item|item\\.beta|item\\.lp|detail\\.ju|ju|detail|chaoshi|chaoshi\\.detail|spu|a.m|.*\\.m)\\.(taobao|tmall)\\.com/";
         var matches = url.match(new RegExp(pattern, 'i'));
         if(matches) {
             return matches[2];
