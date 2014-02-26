@@ -101,9 +101,9 @@ function drawPopup(adzones) {
         }
     }
     menu.append($('<div class="separator"></div>'));
-    menu.append($('<div class="item"><a class="alimamaLogin" href="http://www.alimama.com/member/login.htm">Alimama Login</a></div>'));
+    menu.append($('<div class="item"><a class="click-link" href="http://www.alimama.com/member/login.htm">Alimama Login</a></div>'));
     menu.append($('<div class="separator"></div>'));
-    menu.append($('<div class="item"><a href="">about</a></div>'));
+    menu.append($('<div class="item"><a class="click-link" href="http://162.243.140.80/post/1.html">about</a></div>'));
     $('.adzone').click(function() {
         $('.fa-check-square-o').attr('class', 'adzone icon fa fa-square-o');
         $(this).attr('class', 'adzone icon fa fa-check-square-o');
@@ -111,7 +111,7 @@ function drawPopup(adzones) {
         localStorage['SelectedAdzoneId'] = $(this).next().attr('adzoneid');
         localStorage['SelectedSiteId'] = $(this).next().attr('siteid');
     });
-    $('.alimamaLogin').click(function() {
+    $('.click-link').click(function() {
         chrome.tabs.create({"url":$(this).attr('href'), "selected":true});
     })
 }
