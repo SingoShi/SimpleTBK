@@ -13,7 +13,7 @@ function getCookie(url, name, _onGetTbToken, _drawPopup) {
     var findCookie = false;
     chrome.cookies.get({url: url, name: name}, function(cookie) {
         if (cookie) {
-            console.log("get cookie for " + url + "." + name + cookie.value);
+            //console.log("get cookie for " + url + "." + name + cookie.value);
             findCookie = true;
             _onGetTbToken(cookie.value, _drawPopup);
         }
@@ -101,9 +101,11 @@ function drawPopup(adzones) {
         }
     }
     menu.append($('<div class="separator"></div>'));
-    menu.append($('<div class="item"><a class="click-link" href="http://www.alimama.com/member/login.htm">Alimama Login</a></div>'));
+    menu.append($('<div class="item"><a class="click-reload" href="#"><i class="fa fa-refresh"></i> Reload Adzons</a></div>'));
     menu.append($('<div class="separator"></div>'));
-    menu.append($('<div class="item"><a class="click-link" href="http://162.243.140.80/post/1.html">about</a></div>'));
+    menu.append($('<div class="item"><a class="click-link" href="http://www.alimama.com/member/login.htm"><i class="fa fa-external-link"></i> Alimama Login</a></div>'));
+    menu.append($('<div class="separator"></div>'));
+    menu.append($('<div class="item"><a class="click-link" href="http://162.243.140.80/post/1.html"><i class="fa fa-external-link"></i> About</a></div>'));
     $('.adzone').click(function() {
         $('.fa-check-square-o').attr('class', 'adzone icon fa fa-square-o');
         $(this).attr('class', 'adzone icon fa fa-check-square-o');
@@ -113,7 +115,10 @@ function drawPopup(adzones) {
     });
     $('.click-link').click(function() {
         chrome.tabs.create({"url":$(this).attr('href'), "selected":true});
-    })
+    });
+    $('.click-reload').click(function() {
+        getCookie('http://pub.alimama.com', '_tb_token_', onGetTbToken, drawPopup)
+    });
 }
 
 function loadAdzons(_drawPopup) {

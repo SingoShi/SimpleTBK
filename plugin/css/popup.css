@@ -15,12 +15,21 @@ body {
     white-space: nowrap;
 }
 
+.item a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
 .icon {
     display: inline-block;
     width: 16px;
     height: 16px;
     cursor:pointer;
     vertical-align: middle;
+}
+
+.adzone {
+    display: inline-block;
     cursor: pointer;
 }
 
@@ -34,8 +43,4 @@ body {
 .about {
 	font-size: 10pt;
 	padding: 10px;
-}
-
-#I_ServerIP {
-    min-width: 120px;
 }
