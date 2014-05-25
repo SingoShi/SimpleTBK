@@ -86,15 +86,15 @@ function drawPopup(adzones) {
                 html += '<div class="adzone icon fa fa-check-square-o"></div>';
                 if (!currentZone) {
                     currentZone = localStorage['CurrentZone'] = zonename;
-                    localStorage['SelectedAdzoneId'] = adzones[i].id;
-                    localStorage['SelectedSiteId'] = adzones[i].sub[j].id;
+                    localStorage['SelectedAdzoneId'] = adzones[i].sub[j].id;
+                    localStorage['SelectedSiteId'] = adzones[i].id;
                 }
                 var tmp = adzones[i].name.split('_');
                 localStorage['MemberId'] = tmp[tmp.length - 1];
             } else {
                 html += '<div class="adzone icon fa fa-square-o"></div>';
             }
-            html += '<div adzoneid=' + adzones[i].id + ' siteid=' + adzones[i].sub[j].id + ' style="display: inline-block;">' + zonename + '</div>';
+            html += '<div siteid=' + adzones[i].id + ' adzoneid=' + adzones[i].sub[j].id + ' style="display: inline-block;">' + zonename + '</div>';
             html += '</div>';
             var item = $(html);
             menu.append(item);

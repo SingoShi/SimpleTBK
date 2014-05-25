@@ -1,6 +1,6 @@
 ﻿{
 	"name": "SimpleTBK",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "Simple Taobaoke",
     "icons" : {
         "16": "img/qiaoba16.png",
@@ -19,15 +19,15 @@
 	    {
             "js": [ "js/jquery-1.9.1.min.js", "js/jquery-ui.min.js", "js/tbk.js" ],
             "matches": [ "http://*/*", "https://*/*" ]
-	    } 
+	    }
 	],
 	"web_accessible_resources": [
 	    "js/jquery.min.map"
 	],
 	"permissions": [
-		"tabs", 
-		"http://*/*", 
-		"storage", 
+		"tabs",
+		"http://*/*",
+		"storage",
 		"notifications",
 		"cookies",
 		"https://*/*"
