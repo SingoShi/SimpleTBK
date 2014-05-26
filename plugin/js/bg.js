@@ -17,9 +17,14 @@ function funcCreator() {
 }
 
 function genNotify(icon, body, msg) {
-    var notification = webkitNotifications.createNotification(icon, body, msg);
-    notification.show();
-    window.setTimeout(function(){ notification.cancel(); }, 3000);
+    var options = {
+        type: "basic",
+        message: '<div style="background-color: yellow">' + msg + '</div>',
+        title: body,
+        iconUrl: icon
+    };
+    var notification = chrome.notifications.create("", options, function cb(id) {});
+    window.setTimeout(function() { chrome.notifications.clear(notification, function cb(wasCleared) {}); }, 3000);
 }
 
 if (!localStorage['TbToken'] || !localStorage['SelectedAdzoneId'] || !localStorage['SelectedSiteId']) {
@@ -28,7 +33,7 @@ if (!localStorage['TbToken'] || !localStorage['SelectedAdzoneId'] || !localStora
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.method == "alimamaLogin") {
-        
+
     } else if (request.method == "getAuction") {
         //sendResponse({click_url: 'test', commission_rate: 6});
         if (localStorage['MemberId'] && request.url.indexOf(localStorage['MemberId']) != -1) {
@@ -37,13 +42,13 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         if (!localStorage['TbToken'] || !localStorage['SelectedAdzoneId'] || !localStorage['SelectedSiteId']) {
             loadAdzons();
         }
-        
+
         if (localStorage['SelectedAdzoneId'] && localStorage['SelectedSiteId'] && localStorage['TbToken']) {
             var xhr = new XMLHttpRequest();
             var itemid = request.itemid;
             var auctionCodeObj = null;
             var auctionListObj = null;
-            
+
             try {
                 //getAuctionCode
                 var URL = "http://pub.alimama.com/common/code/getAuctionCode.json?auctionid=" + itemid;
@@ -58,7 +63,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                         auctionCodeObj = null;
                     }
                 }
-                
+
                 //searchAuctionList
                 URL = "http://pub.alimama.com/pubauc/searchAuctionList.json?q=id%3D" + itemid;
                 URL += "&t=" + new Date().getTime() + "&_tb_token_=" + localStorage['TbToken'];
@@ -74,12 +79,12 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                 }
             } catch (err){
             }
-            
+
             // response
             var respObj = {}
             if (auctionListObj &&
                     auctionListObj.data) {
-                if (auctionListObj.data.pagelist && 
+                if (auctionListObj.data.pagelist &&
                     auctionListObj.data.pagelist.length == 1) {
                     var commissionRatePercent = auctionListObj.data.pagelist[0].commissionRatePercent;
                     var calCommission = auctionListObj.data.pagelist[0].calCommission;
@@ -98,7 +103,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             } else {
                 genNotify('', 'Get Auction List Error', 'Please login alimama, and create your own adzones');
             }
-            
+
         } else {
             genNotify('', 'No AdZone Found', 'Please login alimama, and create your own adzones');
         }
