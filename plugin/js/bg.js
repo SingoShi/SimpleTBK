@@ -19,7 +19,7 @@ function funcCreator() {
 function genNotify(icon, body, msg) {
     var options = {
         type: "basic",
-        message: '<div style="background-color: yellow">' + msg + '</div>',
+        message: msg,
         title: body,
         iconUrl: icon
     };
@@ -52,7 +52,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             try {
                 //getAuctionCode
                 var URL = "http://pub.alimama.com/common/code/getAuctionCode.json?auctionid=" + itemid;
-                URL += "&adzoneid=" + localStorage['SelectedAdzoneId'] + "&siteid=" + localStorage['SelectedSiteId'] + "&t=" + new Date().getTime() + "&_tb_token_=" + localStorage['TbToken'];
+                URL += "&adzoneid=" + localStorage['SelectedAdzoneId'] + "&siteid=" + localStorage['SelectedSiteId'] + "&t=" + new Date().getTime() + "&_tb_token_=" + localStorage['TbToken'] + "&_input_charset=utf-8";
                 xhr.open("GET", URL, false);
                 //xhr.onreadystatechange = funcCreator(getAuctionCode, xhr, auctionCodeObj);
                 xhr.send();
@@ -88,8 +88,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                     auctionListObj.data.pagelist.length == 1) {
                     var commissionRatePercent = auctionListObj.data.pagelist[0].commissionRatePercent;
                     var calCommission = auctionListObj.data.pagelist[0].calCommission;
-                    if (auctionCodeObj.data && auctionCodeObj.data.clickUrl) {
-                        var clickUrl = auctionCodeObj.data.clickUrl;
+                    if (auctionCodeObj.data && auctionCodeObj.data.eliteUrl) {
+                        var clickUrl = auctionCodeObj.data.eliteUrl;
                         respObj.click_url = clickUrl;
                         respObj.commission_rate = commissionRatePercent * 100;
                         respObj.cal_commission = calCommission;
