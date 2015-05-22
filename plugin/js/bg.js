@@ -65,7 +65,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                 }
 
                 //searchAuctionList
-                URL = "http://pub.alimama.com/pubauc/searchAuctionList.json?q=id%3D" + itemid;
+                URL = "http://pub.alimama.com/pubauc/searchAuctionList.json?q=" + encodeURIComponent(request.url);;
                 URL += "&t=" + new Date().getTime() + "&_tb_token_=" + localStorage['TbToken'];
                 xhr.open("GET", URL, false);
                 //xhr.onreadystatechange = funcCreator(getAuctionList, xhr);

@@ -76,12 +76,12 @@ Rebate = {
         return false;
     },
     checkURL: function(url) {
-        var pattern = "^(http|https)://(item|item\\.beta|item\\.lp|detail\\.ju|ju|detail|chaoshi|chaoshi\\.detail|spu|a.m|.*\\.m)\\.(taobao|tmall)\\.com/";
+        var pattern = "^(http|https)://(item|item\\.beta|item\\.lp|detail\\.ju|ju|detail|chaoshi|chaoshi\\.detail|spu|a.m|.*\\.m|detail\\.yao)\.(taobao|tmall|95095)\\.com/";
         var matches = url.match(new RegExp(pattern, 'i'));
         if(matches) {
             return matches[2];
         }
         return false;
-    }  
+    }
 };
 Rebate.start();
